@@ -2,12 +2,16 @@
   /** @type {import('echarts').Echarts} */
   import { createEventDispatcher, onMount } from 'svelte';
   import ChartList from '../chartList/ChartList.svelte'
-  import Style from './panelStyle.less'
+  import './panelStyle.less'
   import { getEchartsInstances } from '../../utils/charts'  
   import ConfigView from '../configView/ConfigView.svelte';
   import { bind } from 'svelte/internal';
+  import Draggable from '../../components/Draggable.svelte';
 
   export let isShow = false;
+  export let panelPositionX;
+  export let panelPositionY;
+  export let hasMoved;
 
 
   /**********
@@ -56,19 +60,23 @@
   })
 
 </script>
-<div class="ecdt-panel" style="display: {isShow ? 'flex' : 'none'}">
-  <div class="ecdt-panel-line">
-    <button class="close-btn" on:click={handleClickClose}>close</button>
-    <button class="close-btn" on:click={updateChartList}>update</button>
+<Draggable bind:x={panelPositionX} bind:y={panelPositionY} bind:hasMoved={hasMoved}>
+  <div class="ecdt-panel" style="display: {isShow ? 'flex' : 'none'}">
+    <div class="ecdt-panel-line">
+      <button class="close-btn" on:mousedown|stopPropagation on:click|stopPropagation={handleClickClose}>close</button>
+      <button class="close-btn" on:mousedown|stopPropagation on:click|stopPropagation={updateChartList}>update</button>
+    </div>
+    <div class="ecdt-loading"></div>
+    <div class="ecdt-panel-content">
+      <ChartList 
+        bind:isShow={isShowChartList}
+        bind:chartsList={chartList}
+        on:showChart={toConfigPage}
+      />
+      <ConfigView 
+        bind:this={configViewInstance}
+        bind:isShow={isShowConfigView}
+      />
+    </div>
   </div>
-  <div class="ecdt-loading"></div>
-  <ChartList 
-    bind:isShow={isShowChartList}
-    bind:chartsList={chartList}
-    on:showChart={toConfigPage}
-  />
-  <ConfigView 
-    bind:this={configViewInstance}
-    bind:isShow={isShowConfigView}
-  />
-</div>
+</Draggable>

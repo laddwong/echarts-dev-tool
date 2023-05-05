@@ -1,6 +1,6 @@
 <script>
   import { getConfigFromInstance } from "../../utils/charts";
-  import Style from './configView.less'
+  import './configView.less'
   import JSONEditor from '@json-editor/json-editor';
   import { onMount } from "svelte";
   import { baseConfig } from "../../config/JSONEditorConfig";
@@ -9,7 +9,6 @@
   /** @type {import("echarts").EChartsType | null} */
   let chartInstance = null;
   let chartConfig = null;
-  /** @type {'text' | 'form'} */
 
   export function showConfig(chart) {
     if(!chart) return;
@@ -38,7 +37,7 @@
   }
   const updateChart = () => {
     if(!chartInstance) return;
-    chartInstance.setOption(chartConfig, true)
+    chartInstance.setOption(chartConfig)
   } 
 
 

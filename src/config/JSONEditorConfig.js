@@ -1,6 +1,7 @@
 export const baseConfig = {
   disable_properties: true,
   theme: 'bootstrap5',
+  iconlib: "fontawesome4",
   compact: true,
   schema: {
     title: 'Chart options',

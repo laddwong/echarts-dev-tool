@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import './charlistStyle.less';
   
   export let isShow = true;
   export let chartsList = [];
@@ -13,7 +14,7 @@
   <ul class="chart-list">
     {#each chartsList as chart}
       <li class="chart-list-item">
-        <button on:click={handleClickChartItem(chart.key)}>{chart.name}</button>
+        <button on:mousedown|stopPropagation on:click|stopPropagation={handleClickChartItem(chart.key)}>{chart.name}</button>
       </li>
     {/each}
   </ul>

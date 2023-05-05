@@ -1,14 +1,20 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import Style from './startBtn.less'
+  import './startBtn.less'
+  import Draggable from "../../components/Draggable.svelte";
 
   export let isShow = true
+  export let btnPositionX;
+  export let btnPositionY;
+  export let hasMoved;
 
   const dispatch = createEventDispatcher()
   const handleClickStartBtn = () => {
     dispatch('clickStart')
   }
 </script>
-<div class="ecdt-start-btn" on:keydown={handleClickStartBtn} on:click={handleClickStartBtn} style="display: {isShow ? 'block' : 'none'};">
-  ECDT
-</div>
+<Draggable bind:x={btnPositionX} bind:y={btnPositionY} bind:hasMoved={hasMoved}>
+  <button class="ecdt-start-btn" on:click={handleClickStartBtn} style="display: {isShow ? 'block' : 'none'};">
+    ECDT
+  </button>
+</Draggable>
