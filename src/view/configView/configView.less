@@ -4,24 +4,55 @@
   flex: 1;
   overflow: auto;
 
-  i{
-    &.fa{
-      &.fa-caret-square-o-down {
-        width: 0;
-        height: 0;
-        display: inline-block;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-top: 10px solid @arrowColor;
+  .card-body {
+    display: flex;
+    .form-group {
+      flex: 1
+    }
+    .btn-group {
+      .btn {
+        span {
+          display: none;
+        }
+        i.fa::after {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+        }
       }
-      &.fa-caret-square-o-right {
-        width: 0;
-        height: 0;
-        display: inline-block;
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-left: 11px solid @arrowColor;
+      .json-editor-btn-delete i::after{
+        content: "❌";
       }
-    } 
+      .json-editor-btn-moveup i::after{
+        content: "👆";
+      }
+      .json-editor-btn-movedown i::after{
+        content: "👇";
+      }
+    }
+  }
+  .btn-secondary {
+    border: none;
+    background-color: transparent;
+    i{
+      &.fa{
+        &.fa-caret-square-o-down {
+          width: 0;
+          height: 0;
+          display: inline-block;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-top: 10px solid @arrowColor;
+        }
+        &.fa-caret-square-o-right {
+          width: 0;
+          height: 0;
+          display: inline-block;
+          border-top: 7px solid transparent;
+          border-bottom: 7px solid transparent;
+          border-left: 11px solid @arrowColor;
+        }
+      } 
+    }
   }
 }

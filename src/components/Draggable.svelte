@@ -22,16 +22,14 @@
   const handleMouseUp = (event) => {
     isDragging = false;
   };
-  const handleMouseLeave = (event) => {
-    // isDragging = false;
-  }
+  
+  document.addEventListener('mousemove', handleMouseMove)
+  document.addEventListener('mouseup', handleMouseUp)
 </script>
 
 <div
   style="position: fixed; top:{y}px; left:{x}px; z-index: 10000;"
   on:mousedown={handleMouseDown}
-  on:mousemove={handleMouseMove}
-  on:mouseup={handleMouseUp}
 >
   <slot />
 </div>
